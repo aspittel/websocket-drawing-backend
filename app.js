@@ -16,8 +16,8 @@ http.listen(port, () => {
 })
 
 io.on('connection', (socket) => {
-  socket.on('color change', (color) => {
-    io.emit('color change', { color, id })
+  socket.on('color change', (change) => {
+    io.emit('color change', { color: change.color, id: change.id })
   })
 })
 
