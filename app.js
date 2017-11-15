@@ -15,8 +15,12 @@ http.listen(port, () => {
   console.log(`listening on ${port}`)
 })
 
+const history = []
+
 io.on('connection', (socket) => {
+  socket.emit('history', history)
   socket.on('color change', (change) => {
+    history.push(change)
     io.emit('color change', { color: change.color, id: change.id })
   })
 })
